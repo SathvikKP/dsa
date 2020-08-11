@@ -11,32 +11,32 @@ int solutionUtil(vector<vector<int> > &table,int A[],int n,int amt)
 {
     if (amt==0)
     {
-        cout<<"set 1"<<endl;
+        //cout<<"set 1"<<endl;
         table[n][amt]=1;
         return 1;
     }
     if (amt<0)
     {
-        cout<<"set 0"<<endl;
+        //cout<<"set 0"<<endl;
         table[n][amt]=0;
         return 0;
     }
     if (n<=0 && amt>=1)
     {
-        cout<<"set 0"<<endl;
+        //cout<<"set 0"<<endl;
         table[n][amt]=0;
         return 0;
     }
     else if (table[n][amt]!=-1)
     {
-        cout<<"WHY IS IT COMING HERE???? TABLE INIT TO -1"<<endl;
-        cout<<"value : "<<table[n][amt]<<endl;
+        //cout<<"WHY IS IT COMING HERE???? TABLE INIT TO -1"<<endl;
+       //cout<<"value : "<<table[n][amt]<<endl;
         return table[n][amt];
     }
     else
     {
         int ans = solutionUtil(table,A,n-1,amt)+solutionUtil(table,A,n,amt-A[n-1]);
-        cout<<"LLOLOLOL"<<ans<<endl;
+        //cout<<"LLOLOLOL"<<ans<<endl;
         table[n][amt]=ans;
         return ans;
     }
@@ -44,28 +44,28 @@ int solutionUtil(vector<vector<int> > &table,int A[],int n,int amt)
 
 void solution(int A[],int n,int amt)
 {
-    vector<vector<int> > table(n+1,vector<int>(amt));
+    vector<vector<int> > table(n+1,vector<int>(amt+1));
     for (int i=0;i<n+1;i++)
     {
-        for (int j=0;j<amt;j++)
+        for (int j=0;j<amt+1;j++)
         {
             table[i][j]=-1;
         }
     }
-    cout<<"\nparams : n : "<<n<<" amt : "<<amt<<endl;
+    //cout<<"\nparams : n : "<<n<<" amt : "<<amt<<endl;
     int ans = solutionUtil(table,A,n,amt);
     
     //table printing : prints -1 for each
-    
+    /*
     for (int i=0;i<n+1;i++)
     {
-        for (int j=0;j<amt;j++)
+        for (int j=0;j<amt+1;j++)
         {
             cout<<table[i][j]<<" ";
         }
         cout<<endl;
     }
-    
+    */
     cout<<ans<<endl;
 }
 
